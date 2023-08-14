@@ -13,7 +13,7 @@ export const SideBar = () => {
     const pathName = usePathname();
 
   return (
-    <div className="space-y-4 py-4 w-1/6">
+    <div className="space-y-4 py-4 w-max">
       <div className="py-2">
         <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
           Manage
@@ -48,7 +48,7 @@ export const SideBar = () => {
             </Button>
           </Link>
           </div>
-          
+
         </div>
       </div>
     </div>
