@@ -33,7 +33,7 @@ import { Label } from "@/components/ui/label";
 import { AddToAlbum } from "./ui/addAlbum";
 // import { AddToAlbum } from "./ui/addAlbum";
 
-export const ImageCard = (props: any) => {
+export const AlbumCard = (props: any) => {
   const { imageprops } = props;
   const isFavourite: boolean = imageprops.tags.includes("favourite");
   const router = useRouter();

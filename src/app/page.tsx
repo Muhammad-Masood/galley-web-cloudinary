@@ -1,9 +1,9 @@
+import { getRootFolders, RootFolder } from "./albums/album-api";
 
-export default function Home() {
+export default async function Home() {
 
   return (
     <div>
-      Home
     </div>
   );
 }
