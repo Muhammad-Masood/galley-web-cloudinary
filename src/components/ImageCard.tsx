@@ -32,6 +32,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AddToAlbum } from "./ui/addAlbum";
 // import { AddToAlbum } from "./ui/addAlbum";
+import { FiEdit2 } from "react-icons/fi";
+import Link from "next/link";
+import { Edit } from "./ui/edit";
 
 export const ImageCard = (props: any) => {
   const { imageprops } = props;
@@ -44,17 +47,20 @@ export const ImageCard = (props: any) => {
   return (
     <div className="relative gap-4">
       <div className="absolute right-2 top-2">
-        <DropdownMenu >
+        <DropdownMenu>
           <DropdownMenuTrigger>
             <HiOutlineMenuAlt4 className="w-5 h-5" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-          <DropdownMenuItem className="gap-x-1" asChild>
-          <AddToAlbum imageprops={imageprops}/>
-        </DropdownMenuItem>
+            <DropdownMenuItem className="gap-x-1" asChild>
+              <AddToAlbum imageprops={imageprops} />
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-x-1" asChild
+            >
+              <Edit id={imageprops.public_id}/>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        
       </div>
       {/* {
           dialog&&<AddToAlbum onClose={closeDialog}/>

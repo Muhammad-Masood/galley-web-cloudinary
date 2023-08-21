@@ -12,8 +12,6 @@ export const ThemeChanger = () => {
   }
   
     return (
-    <div className="pt-2">
-        <button className="bg-transparent" onClick={handleTheme}>{theme=='dark'?<MdOutlineLightMode className="w-6 h-6"/>:<MdDarkMode className="w-6 h-6"/>}</button>
-    </div>
+        <div className="bg-transparent cursor-pointer" onClick={handleTheme}>{theme=='dark'?<MdOutlineLightMode className="w-4 h-4"/>:<MdDarkMode className="w-4 h-4"/>}</div>
   )
 }

@@ -13,14 +13,13 @@ import {BiCollapseVertical} from "react-icons/bi";
 export function AlbumCollapsible() {
   return (
     <div>
-        <Button variant={`${true  ? "secondary" : "ghost"}`} className="w-full justify-start gap-x-1" >
+        {/* <Button variant={`${true  ? "secondary" : "ghost"}`} className="w-full justify-start gap-x-1" > */}
       <Collapsible>
         <CollapsibleTrigger>
-            {/* <div className="flex gapx-1 items-center"> */}
-                <IoAlbumsOutline className="icons" /> 
+            {/* <div className="flex gap-x-1 items-center"> */}
+                <IoAlbumsOutline className="icons" />
                 Albums
                 <BiCollapseVertical/>
-                
             {/* </div> */}
         </CollapsibleTrigger>
 
@@ -29,7 +28,7 @@ export function AlbumCollapsible() {
           required.
         </CollapsibleContent>
       </Collapsible>
-      </Button>
+      {/* </Button> */}
     </div>
   );
 }

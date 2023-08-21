@@ -14,11 +14,12 @@ import {
 import {AiOutlineHeart, AiOutlineMenu} from "react-icons/ai";
 import Link from "next/link";
 import { IoAlbumsOutline } from "react-icons/io5";
+import { FcStackOfPhotos } from "react-icons/fc";
 
 export const Navbar = () => {
   return (
-    <div className="flex justify-between">
-      <p className="text-3xl font-bold">Photon</p>
+    <div className="flex justify-between lg:hidden">
+      <Link href="/ " className="flex items-center gap-2"><p className="text-3xl font-bold">Photon</p><FcStackOfPhotos className="w-8 h-8"/></Link>
       <div className="flex gap-x-6 items-center">
        <div className="block md:hidden sm:hidden">
        <Sheet>
