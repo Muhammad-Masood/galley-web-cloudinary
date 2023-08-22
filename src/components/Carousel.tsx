@@ -34,9 +34,9 @@ export function Carousel() {
     <div className="overflow-hidden relative items-center ">
       <div className={`flex relative transform ease-out duration-300 ${isChanging? "opacity-0" : "opacity-100"} transition-opacity`}>
       <Image src={banners[index].path} alt="banner" className="opacity-30 blur-sm" width={1200} height={600}/>
-      <div className="absolute h-full  items-center flex flex-col justify-center gap-y-4">
-      <h2 className="text-4xl font-semibold">{banners[index].heading}</h2>
-      <p className="tracking-wide font-mono text-slate-200 px-24">{banners[index].para}</p>
+      <div className="absolute h-full w-full items-center flex flex-col justify-center gap-y-4">
+      <h2 className="text-4xl font-semibold px-6">{banners[index].heading}</h2>
+      <p className="tracking-wide font-mono text-slate-200 px-24 hidden md:block lg:block">{banners[index].para}</p>
       </div>
       </div>
       <div className="absolute top-0 p-4 h-full w-full items-center flex justify-between ">

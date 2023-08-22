@@ -4,7 +4,6 @@ import {
   addIntoFavourites,
   removeFromFavourites,
 } from "@/app/gallery/manage-tags";
-import cloudinary from "cloudinary";
 import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -18,22 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { AddToAlbum } from "./ui/addAlbum";
-// import { AddToAlbum } from "./ui/addAlbum";
-import { FiEdit2 } from "react-icons/fi";
-import Link from "next/link";
 import { Edit } from "./ui/edit";
 
 export const ImageCard = (props: any & {onUnHeart:(unHeartResource:ImageData)=>void} ) => {
