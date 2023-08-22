@@ -7,7 +7,7 @@ import {
 import cloudinary from "cloudinary";
 import { CldImage } from "next-cloudinary";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsHeart, BsHeartFill, BsFolderSymlink } from "react-icons/bs";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import {
@@ -36,16 +36,16 @@ import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
 import { Edit } from "./ui/edit";
 
-export const ImageCard = (props: any) => {
-  const { imageprops } = props;
-  const isFavourite: boolean = imageprops.tags.includes("favourite");
+export const ImageCard = (props: any & {onUnHeart:(unHeartResource:ImageData)=>void} ) => {
+  const { imageprops,className } = props; 
+  const [favourite,setFavourite] = useState(imageprops.tags.includes("favourite"));
+  const {onUnHeart} = props;
   const router = useRouter();
-
-  // const openDialog = () => setDialog(true);
-  // const closeDialog = () => setDialog(false);
-  // console.log(dialog);
+  useEffect(() => {
+    router.refresh();
+  }); 
   return (
-    <div className="relative gap-4">
+    <div className="relative gap-4 object-cover">
       <div className="absolute right-2 top-2">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -53,10 +53,9 @@ export const ImageCard = (props: any) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem className="gap-x-1" asChild>
-              <AddToAlbum imageprops={imageprops} />
+              <AddToAlbum image={imageprops} />
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-x-1" asChild
-            >
+            <DropdownMenuItem className="gap-x-1" asChild>
               <Edit id={imageprops.public_id}/>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -65,10 +64,11 @@ export const ImageCard = (props: any) => {
       {/* {
           dialog&&<AddToAlbum onClose={closeDialog}/>
         } */}
-      {!isFavourite ? (
+      {!favourite ? (
         <BsHeart
           className="w-5 h-5 left-2 top-2 absolute cursor-pointer transition ease-in-out hover:scale-125 duration-200  "
           onClick={async () => {
+            setFavourite(true);
             await addIntoFavourites(imageprops.public_id);
             router.refresh();
           }}
@@ -77,6 +77,8 @@ export const ImageCard = (props: any) => {
         <BsHeartFill
           className="w-5 h-5 left-2 top-2 cursor-pointer absolute transition ease-in-out hover:scale-125 duration-200"
           onClick={async () => {
+              onUnHeart(imageprops);
+            setFavourite(false);
             await removeFromFavourites(imageprops.public_id);
             router.refresh();
           }}

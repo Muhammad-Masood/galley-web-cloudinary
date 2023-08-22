@@ -34,11 +34,20 @@ export async function createAlbum(folderName: string) {
 }
 
 export async function searchFolder(folderName:string){
-  const folders = await getRootFolders();
-  const folder = folders.find(f => f.name == folderName);
-  return folder;
-  
+    const folders = await getRootFolders();
+    const folder = folders.filter(f => f.name == folderName);
+    return folder;
 }
+
+export async function findFolder(name?:string){
+  if(name){
+    const folder = await searchFolder(name);
+    return folder;
+  } else {
+    const folders = await getRootFolders();
+    return folders;
+  }
+} 
 
 export async function getRootFolders() {
   const {folders} = await cloudinary.v2.api.root_folders() as RootFolder;

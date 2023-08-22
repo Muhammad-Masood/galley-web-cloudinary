@@ -1,12 +1,8 @@
-'use client'
-
-import { Button } from "@/components/ui/button";
+"use client"
 import cloudinary from "cloudinary";
 import { CldImage } from "next-cloudinary";
-import { useState } from "react";
-
-
-type effectsTypes = "generative_fill"|"remove_background"|"grayscale";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const effects = [
   {
@@ -22,50 +18,57 @@ const effects = [
     type:"remove_background"
   },
   {
-    name:"Grayscale",
-    type:"grayscale"
+    name:"Gravity",
+    type:"gravity"
   },
-  {
-    name:"Tint",
-    type:"tint"
-  }
+  // {
+  //   name:"Tint",
+  //   type:"tint"
+  // }
 ]
 
-const page = ({params}:{params:{publicId:string}}) => {
-
+const Page = ({ params }: { params: { publicId: string } }) => {
   const [transformation,setTransformation] = useState<undefined|string>();
+  // const [grayscaleImage,setGrayscaleImage] = useState("");
+  // console.log(params.publicId);
+  // const handleGrayscaleEffect = () => {
+  //   const gscImage = applyGrayscale(params.publicId);
+  //   console.log(gscImage);
+  // }
+
+  // useEffect(()=> {
+  //   const imageUrl = cloudinary.v2.image(params.publicId,{transformation : [
+  //     {effect:"grayscale"}
+  //   ]});
+  //   setGrayscaleImage(imageUrl);
+  //   console.log(grayscaleImage);
+  // },[])
+    
 
   return (
     <div className="space-y-6">
-       <h2 className="mb-2 text-4xl font-bold tracking-normal">Edit {params.publicId}</h2>
-       <div className="flex gap-4">
+      <h2 className="mb-2 text-4xl font-bold tracking-normal">
+        Edit {params.publicId}
+      </h2>
+      <div className="flex gap-4">
         {effects.map((effect) => (
-          <Button onClick={() => {setTransformation(effect.type)}}>{effect.name}</Button>
+          <Button key={effect.type} onClick={() => {
+            setTransformation(effect.type);
+   
+          }}>{effect.name}</Button>
         ))}
-        {/* <Button onClick={() => {
-        setTransformation("generative_fill");
-       }}>Clear All</Button>
-       <Button onClick={() => {
-        setTransformation("generative_fill");
-       }}>Generative Fill</Button>
-       <Button onClick={() => {
-        setTransformation("grayscale");
-       }}>Grayscale</Button>
-       <Button onClick={() => {
-        setTransformation("remove_background");
-       }}>Background Remove</Button> */}
        </div>
-       <div className="grid grid-cols-1 lg:grid-cols-2">
-      <CldImage 
-      width={400}
-      height={300}
-      src={params.publicId}
-      alt="image_view"
-      />
-      {
+      <div className="grid grid-cols-1 lg:grid-cols-2 px-6">
+        <CldImage
+          width={490}
+          height={300}
+          src={params.publicId}
+          alt="image_view"
+        />
+        {
         transformation==="generative_fill" && 
         <CldImage
-        width={400}
+        width={490}
         height={300}
         src={params.publicId}
         alt="image_view"
@@ -75,7 +78,7 @@ const page = ({params}:{params:{publicId:string}}) => {
       {
         transformation==="remove_background" && 
         <CldImage
-        width={400}
+        width={490}
         height={300}
         src={params.publicId}
         alt="image_view"
@@ -83,28 +86,29 @@ const page = ({params}:{params:{publicId:string}}) => {
         />
       }
       {
-        transformation==="grayscale" && 
-        <CldImage
-        width={400}
+        transformation==="gravity" && 
+        <CldImage 
+        width={490}
         height={300}
         src={params.publicId}
         alt="image_view"
-        grayscale
+        gravity="auto"
+        // tint="equalize:80:blue:blueviolet"
         />
       }
       {
         transformation==="tint" && 
         <CldImage
-        width={400}
+        width={490}
         height={300}
         src={params.publicId}
         alt="image_view"
-        tint="equalize:80:blue:blueviolet"
+        // pixelate
         />
       }
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page;
+export default Page;

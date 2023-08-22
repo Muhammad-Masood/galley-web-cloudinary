@@ -18,7 +18,7 @@ import { BsFolderSymlink } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { Separator } from "@/components/ui/separator";
 
-export function AddToAlbum({ imageprops }: { imageprops: ImageData }) {
+export function AddToAlbum({ image }: { image: ImageData }) {
   const [dialog, setDialog] = useState(false);
   const [album, setAlbum] = useState("");
   const [create, setCreate] = useState(false);
@@ -88,7 +88,7 @@ export function AddToAlbum({ imageprops }: { imageprops: ImageData }) {
             <Button
               type="submit"
               onClick={() => {
-                  addToAlbum(album, imageprops.public_id).then(()=>{
+                  addToAlbum(album, image.public_id).then(()=>{
                     setDialog(false);
                   toast.success("Added to album :)");
                   }).catch (error => {

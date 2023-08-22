@@ -21,9 +21,6 @@ export const AlbumCard = ({folder}:{folder:Folder}) => {
           <CardTitle>{folder.name}</CardTitle>
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
         <CardFooter>
           <Link href={`/albums/${folder.name}`}>
           <Button>View Album</Button>

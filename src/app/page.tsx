@@ -1,12 +1,11 @@
-import Image from "next/image";
 import banners from "../../public/banners";
-import { Slider } from "@/components/Carousel";
+import { Carousel } from "@/components/Carousel";
 
 export default async function Home() {
 
   return (
-    <div className="max-w-5xl m-auto">
-      <Slider/>
+    <div className="max-w-[2000px] m-auto mt-4">
+      <Carousel/>
     </div>
   );
 }
